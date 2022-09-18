@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.version               = Jekyll::LastModifiedAt::VERSION
   s.summary               = 'A liquid tag for Jekyll to indicate the last time a file was modified.'
   s.authors               = 'Garen J. Torikian'
-  s.homepage              = 'https://github.com/gjtorikian/jekyll-last-modified-at'
+  s.homepage              = 'https://github.com/bismark39/jekyll-last-modified-at'
   s.license               = 'MIT'
   s.files                 = Dir['lib/**/*.rb']
 
