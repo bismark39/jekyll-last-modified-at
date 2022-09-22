@@ -6,15 +6,12 @@ module Jekyll
       def initialize(tag_name, format, path, tokens)
         super
         @format = format.empty? ? nil : format.strip
-        @path = path
       end
 
       def render(context)
-        url = Liquid::Template.parse(@path).render context
         site = context.registers[:site].config['source']
         format = @format || site.config.dig('last-modified-at', 'date-format')
-        article_file = context.environments.first['page']['path']
-        file_path = site_source + '/' + url
+        article_file = context.environments.first['page']
         Determinator.new(site.source, article_file, format)
                     .formatted_last_modified_date
       end
