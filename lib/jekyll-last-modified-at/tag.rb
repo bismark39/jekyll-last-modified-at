@@ -10,6 +10,7 @@ module Jekyll
       end
 
       def render(context)
+        url = Liquid::Template.parse(@path).render context
         site = context.registers[:site].config['source']
         format = @format || site.config.dig('last-modified-at', 'date-format')
         article_file = context.environments.first['page']['path']
