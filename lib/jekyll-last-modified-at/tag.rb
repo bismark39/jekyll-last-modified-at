@@ -3,16 +3,16 @@
 module Jekyll
   module LastModifiedAt
     class Tag < Liquid::Tag
-      def initialize(tag_name, format, path, tokens)
+      def initialize(tag_name, path, tokens)
         super
-        @format = format.empty? ? nil : format.strip
+        @path = path
       end
 
       def render(context)
-        site = context.registers[:site].config['source']
-        format = @format || site.config.dig('last-modified-at', 'date-format')
-        article_file = context.environments.first['page']
-        Determinator.new(site.source, article_file, format)
+        site = context.registers[:site]
+        format = @format || site.config.dig('last-modified-at', 'path')
+        article_file = context.environments.first['page']['path']
+        Determinator.new(site.source, article_file, path)
                     .formatted_last_modified_date
       end
     end

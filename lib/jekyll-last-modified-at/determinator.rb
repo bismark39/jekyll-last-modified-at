@@ -3,8 +3,8 @@
 module Jekyll
   module LastModifiedAt
     class Determinator
-      attr_reader :site_source
-      attr_accessor :format, :page_path
+      attr_reader :site_source, :page_path
+      attr_accessor :format
 
       def initialize(site_source, page_path, format = nil)
         @site_source = site_source
@@ -64,7 +64,7 @@ module Jekyll
       private
 
       def absolute_path_to_article
-        @absolute_path_to_article ||= Jekyll.sanitized_path(site_source)
+        @absolute_path_to_article ||= Jekyll.sanitized_path(site_source, @page_path)
       end
 
       def relative_path_from_git_dir
