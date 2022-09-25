@@ -70,7 +70,10 @@ module Jekyll
       def relative_path_from_git_dir
         return nil unless git.git_repo?
 
-        @relative_path_from_git_dir ||= Pathname.new(File.dirname(git.top_level_directory))
+        @relative_path_from_git_dir ||= Pathname.new(absolute_path_to_article)
+                                                .relative_path_from(
+                                                  Pathname.new(File.dirname(git.top_level_directory))
+                                                ).to_s
       end
 
       def mtime(file)
